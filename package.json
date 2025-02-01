@@ -1,12 +1,18 @@
 {
-  "name": "sort-package-json",
+  "name": "coc-package-json",
   "version": "0.0.0-development",
   "description": "",
   "keywords": [
-    "coc.nvim"
+    "coc.nvim",
+    "package-json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joemckenney/coc-package-json.git"
+  },
   "license": "MIT",
   "author": "Joe McKenney <joe@crowprose.com>",
+  "publisher": "joemckenney",
   "main": "dist/index.js",
   "scripts": {
     "build": "node esbuild.mjs",

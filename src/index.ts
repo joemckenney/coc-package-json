@@ -1,16 +1,7 @@
-import {
-  commands,
-  CompleteResult,
-  ExtensionContext,
-  listManager,
-  sources,
-  window,
-  workspace,
-} from "coc.nvim";
+import { commands, ExtensionContext, window, workspace } from "coc.nvim";
 import { sortPackageJson } from "sort-package-json";
 
 import path from "node:path";
-import DemoList from "./lists";
 
 export async function activate(context: ExtensionContext): Promise<void> {
   window.showInformationMessage("sort-package-json works!");
@@ -19,25 +10,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
     commands.registerCommand("sort-package-json.Command", async () => {
       window.showInformationMessage("sort-package-json Commands works!");
     }),
-
-    listManager.registerList(new DemoList()),
-
-    sources.createSource({
-      name: "sort-package-json completion source", // unique id
-      doComplete: async () => {
-        const items = await getCompletionItems();
-        return items;
-      },
-    }),
-
-    workspace.registerKeymap(
-      ["n"],
-      "sort-package-json-keymap",
-      async () => {
-        window.showInformationMessage("registerKeymap");
-      },
-      { sync: false }
-    ),
 
     workspace.registerAutocmd({
       event: "BufWritePre",
@@ -71,19 +43,4 @@ export async function activate(context: ExtensionContext): Promise<void> {
       },
     })
   );
-}
-
-async function getCompletionItems(): Promise<CompleteResult> {
-  return {
-    items: [
-      {
-        word: "TestCompletionItem 1",
-        menu: "[sort-package-json]",
-      },
-      {
-        word: "TestCompletionItem 2",
-        menu: "[sort-package-json]",
-      },
-    ],
-  };
 }
