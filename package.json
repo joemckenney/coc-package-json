@@ -1,0 +1,49 @@
+{
+  "name": "sort-package-json",
+  "version": "0.0.0-development",
+  "description": "",
+  "keywords": [
+    "coc.nvim"
+  ],
+  "license": "MIT",
+  "author": "Joe McKenney <joe@crowprose.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "prepare": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "sort-package-json.Command",
+        "title": "sort-package-json command title"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "sort-package-json configuration",
+      "properties": {
+        "sort-package-json.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable sort-package-json extension"
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "dependencies": {
+    "sort-package-json": "^2.14.0"
+  },
+  "devDependencies": {
+    "coc.nvim": "^0.0.83-next.18",
+    "esbuild": "^0.19.8",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "coc": "^0.0.82"
+  }
+}
