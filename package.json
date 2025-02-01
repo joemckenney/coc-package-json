@@ -13,17 +13,35 @@
   "license": "MIT",
   "author": "Joe McKenney <joe@crowprose.com>",
   "publisher": "joemckenney",
-  "main": "dist/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.esm.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/cjs/index.cjs.js"
+      }
+    }
+  },
+  "main": "./dist/cjs/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "node esbuild.mjs",
-    "prepare": "node esbuild.mjs",
-    "watch": "node esbuild.mjs --watch"
+    "build": "build",
+    "clean": "clean",
+    "dev": "build -w",
+    "format": "format",
+    "lint": "lint",
+    "typecheck": "tsc --noEmit"
   },
   "contributes": {
     "commands": [
       {
-        "command": "sort-package-json.Command",
-        "title": "sort-package-json command title"
+        "command": "packageJson.sort",
+        "title": "Sort the packageJson fields"
       }
     ],
     "configuration": {
@@ -45,6 +63,11 @@
     "sort-package-json": "^2.14.0"
   },
   "devDependencies": {
+    "@pkg-tools/build": "^1.0.2",
+    "@pkg-tools/clean": "^1.0.1",
+    "@pkg-tools/config": "^1.0.8",
+    "@pkg-tools/format": "^1.0.5",
+    "@pkg-tools/lint": "^1.0.7",
     "coc.nvim": "^0.0.83-next.18",
     "esbuild": "^0.19.8",
     "typescript": "^5.3.3"

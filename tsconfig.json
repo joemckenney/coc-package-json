@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["es2017", "es2018"],
-    "module": "commonjs",
-    "declaration": false,
-    "sourceMap": true,
-    "outDir": "lib",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "esModuleInterop": true
+    "noEmit": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
