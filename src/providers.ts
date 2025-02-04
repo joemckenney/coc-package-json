@@ -6,11 +6,11 @@ import {
   TextEdit,
 } from 'coc.nvim';
 
-import { format } from './format.js';
+import { format } from './formatters.js';
 
 import type { LoggingService } from './logging-service.js';
 
-export function editProvider(
+export function getDocumentFormattingEditProvider(
   logger: LoggingService
 ): DocumentFormattingEditProvider {
   return {

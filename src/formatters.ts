@@ -11,10 +11,10 @@ import path from 'node:path';
 import { LoggingService } from './logging-service.js';
 import { sortPackageJson } from 'sort-package-json';
 
-export async function format(
+export function format(
   document: LinesTextDocument,
   { logger }: { logger: LoggingService }
-): Promise<TextEdit[]> {
+): TextEdit[] {
   let formatted: string | null = null;
   const start = Date.now();
 

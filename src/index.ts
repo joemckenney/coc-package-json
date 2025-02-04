@@ -1,8 +1,8 @@
-import { commands, languages, ExtensionContext } from 'coc.nvim';
-import { LoggingService } from './logging-service.js';
-import { editProvider } from './edit-provider.js';
+import { commands, languages, ExtensionContext, workspace } from 'coc.nvim';
+import { LogLevel, LoggingService } from './logging-service.js';
+import { getDocumentFormattingEditProvider } from './providers.js';
 
-import { forceFormat } from './format.js';
+import { forceFormat } from './formatters.js';
 
 import json from '../package.json' assert { type: 'json' };
 
@@ -14,10 +14,23 @@ export async function activate(context: ExtensionContext): Promise<void> {
   logger.logInfo(`Extension Name: ${name}.`);
   logger.logInfo(`Extension Version: ${version}.`);
 
+  const configuration = workspace.getConfiguration('packageJson');
+
+  const enabled = configuration.get<boolean>('enabled');
+  const logLevel = configuration.get<LogLevel>('logLevel');
+
+  if (!enabled) {
+    return;
+  }
+
+  if (logLevel) {
+    logger.setOutputLevel(logLevel);
+  }
+
   context.subscriptions.push(
     languages.registerDocumentFormatProvider(
       [{ scheme: 'file', pattern: '**/package.json' }],
-      editProvider(logger),
+      getDocumentFormattingEditProvider(logger),
       100
     ),
     commands.registerCommand('packageJson.format', forceFormat(logger)),

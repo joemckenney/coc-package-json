@@ -40,18 +40,35 @@
   "contributes": {
     "commands": [
       {
-        "command": "packageJson.sort",
-        "title": "Sort the packageJson fields"
+        "command": "packageJson.format",
+        "title": "Format the package.json fields"
+      },
+      {
+        "command": "packageJson.openOutput",
+        "title": "Open the coc-package-json output channel"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "sort-package-json configuration",
+      "title": "packageJson configuration",
       "properties": {
-        "sort-package-json.enabled": {
+        "packageJson.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable sort-package-json extension"
+          "markdownDescription": "Controls whether packageJson is enabled or not.",
+          "scope": "resource"
+        },
+        "packageJson.logLevel": {
+          "scope": "resource",
+          "type": "string",
+          "enum": [
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "NONE"
+          ],
+          "default": "INFO"
         }
       }
     }

@@ -1,6 +1,6 @@
 import { window } from 'coc.nvim';
 
-type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
+export type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
 
 export class LoggingService {
   private outputChannel = window.createOutputChannel('PackageJson');
